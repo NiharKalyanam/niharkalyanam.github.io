@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nihar Kalyanam — IAM & AI Engineer</title>
+<meta name="description" content="Senior IAM Engineer & AI Builder. 10+ years securing enterprise identity at Salesforce, Equifax, Texas Instruments. SailPoint expert, AI automation builder, published author.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060912;--surface:#0d1424;--surface2:#111b30;
+  --border:rgba(99,179,237,0.12);--border-hover:rgba(99,179,237,0.35);
+  --accent:#3b82f6;--accent2:#06b6d4;--accent3:#8b5cf6;
+  --text:#e2e8f0;--muted:#64748b;--highlight:#93c5fd;
+  --glow:rgba(59,130,246,0.18);
+  --fd:'Space Grotesk',sans-serif;--fb:'Inter',sans-serif;--fm:'Space Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);font-size:15px;line-height:1.6;overflow-x:hidden;cursor:none}
+
+/* ── CUSTOM CURSOR ── */
+#cursor{position:fixed;width:12px;height:12px;background:var(--accent2);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,width .2s,height .2s,opacity .2s;mix-blend-mode:screen}
+#cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(6,182,212,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .08s,width .25s,height .25s,border-color .25s;transition-timing-function:cubic-bezier(.16,1,.3,1)}
+body.cursor-hover #cursor{width:20px;height:20px;background:var(--accent)}
+body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:rgba(59,130,246,.6)}
+@media(pointer:coarse){#cursor,#cursor-ring{display:none}body{cursor:auto}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 56px;background:rgba(6,9,18,0);backdrop-filter:blur(0px);border-bottom:1px solid transparent;transition:background .4s,backdrop-filter .4s,border-color .4s}
+nav.scrolled{background:rgba(6,9,18,0.92);backdrop-filter:blur(24px);border-color:var(--border)}
+.nav-logo{font-family:var(--fm);font-size:13px;color:var(--accent2);letter-spacing:.08em;text-decoration:none;display:flex;align-items:center;gap:10px;cursor:none}
+.nav-avatar-wrap{width:32px;height:32px;border-radius:50%;border:2px dashed var(--accent2);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--accent2);position:relative;overflow:hidden;flex-shrink:0;transition:background .2s,border-style .2s}
+.nav-avatar-wrap:hover{background:rgba(6,182,212,.1)}
+.nav-avatar-wrap input{position:absolute;inset:0;opacity:0;cursor:none;width:100%;height:100%}
+.nav-avatar-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;border-radius:50%}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-family:var(--fd);font-weight:500;transition:color .2s;cursor:none;position:relative;padding-bottom:2px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--accent2);transition:width .3s}
+.nav-links a.active,.nav-links a:hover{color:var(--highlight)}
+.nav-links a.active::after,.nav-links a:hover::after{width:100%}
+.nav-cta{background:transparent;border:1px solid var(--accent);color:var(--accent);padding:8px 20px;border-radius:6px;font-size:13px;font-family:var(--fd);font-weight:600;text-decoration:none;transition:background .2s,color .2s,box-shadow .2s;cursor:none}
+.nav-cta:hover{background:var(--accent);color:#fff;box-shadow:0 0 20px rgba(59,130,246,.4)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 56px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(59,130,246,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent)}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);animation:float 8s ease-in-out infinite;pointer-events:none}
+.orb-1{width:600px;height:600px;background:radial-gradient(circle,rgba(59,130,246,.2) 0%,transparent 70%);top:-150px;left:-150px}
+.orb-2{width:500px;height:500px;background:radial-gradient(circle,rgba(139,92,246,.14) 0%,transparent 70%);bottom:-80px;right:0;animation-delay:-4s}
+.orb-3{width:300px;height:300px;background:radial-gradient(circle,rgba(6,182,212,.12) 0%,transparent 70%);top:35%;right:18%;animation-delay:-2s}
+@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+
+.hero-inner{position:relative;display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center;max-width:1100px;margin:0 auto;width:100%}
+
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.25);border-radius:100px;padding:6px 16px;font-size:12px;font-family:var(--fm);color:var(--accent2);letter-spacing:.06em;margin-bottom:28px}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+.hero-name{font-family:var(--fd);font-size:clamp(48px,6.5vw,82px);font-weight:700;line-height:.96;letter-spacing:-.03em;margin-bottom:20px}
+.name-line-1{color:var(--text);display:block}
+.name-line-2{display:block;background:linear-gradient(135deg,#3b82f6,#06b6d4,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% 200%;animation:gradshift 5s ease infinite}
+@keyframes gradshift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+.hero-tagline{font-family:var(--fd);font-size:clamp(18px,2.2vw,24px);font-weight:500;color:var(--muted);margin-bottom:14px;min-height:36px}
+.hero-tagline .typed-text{color:var(--highlight)}
+.hero-tagline .cursor-blink{display:inline-block;width:2px;height:1em;background:var(--accent2);margin-left:2px;vertical-align:middle;animation:blink .8s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+.hero-sub{font-size:15px;color:var(--muted);margin-bottom:36px;line-height:1.7;max-width:460px}
+.hero-sub strong{color:var(--text)}
+
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent3));color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-family:var(--fd);font-weight:700;font-size:14px;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px;cursor:none;position:relative;overflow:hidden}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.1),transparent);opacity:0;transition:opacity .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(59,130,246,.4)}
+.btn-primary:hover::before{opacity:1}
+.btn-secondary{background:transparent;color:var(--text);padding:14px 24px;border-radius:8px;border:1px solid var(--border);text-decoration:none;font-family:var(--fd);font-weight:500;font-size:14px;transition:border-color .2s,color .2s,transform .2s;display:inline-flex;align-items:center;gap:8px;cursor:none}
+.btn-secondary:hover{border-color:var(--accent);color:var(--highlight);transform:translateY(-2px)}
+
+/* stat cards */
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hero-stat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.hero-stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.hero-stat:hover{border-color:var(--border-hover);transform:translateY(-2px)}
+.stat-num{font-family:var(--fd);font-size:30px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1.1}
+.stat-label{font-size:11px;color:var(--muted);font-family:var(--fm);margin-top:5px;display:block;line-height:1.45}
+
+/* ── SECTIONS ── */
+.sec{padding:96px 56px}
+.sec.alt{background:var(--surface)}
+.max-w{max-width:1100px;margin:0 auto}
+.section-label{font-family:var(--fm);font-size:11px;color:var(--accent2);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.section-title{font-family:var(--fd);font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.03em;color:var(--text);margin-bottom:44px;line-height:1.1}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);max-width:1100px;margin:0 auto}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:300px 1fr;gap:72px;align-items:start}
+.about-photo-wrap{position:relative}
+.about-frame{width:100%;aspect-ratio:3/4;border-radius:24px;overflow:hidden;border:1px solid var(--border);background:var(--surface2);position:relative;cursor:none;transition:border-color .3s}
+.about-frame:hover{border-color:var(--border-hover)}
+.about-frame img{width:100%;height:100%;object-fit:cover;display:none}
+.about-frame img.loaded{display:block}
+.about-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-family:var(--fm);font-size:11px;text-align:center;padding:20px}
+.about-placeholder .up-icon{font-size:44px;opacity:.3;transition:opacity .2s}
+.about-frame:hover .about-placeholder .up-icon{opacity:.6}
+.about-frame input{position:absolute;inset:0;opacity:0;cursor:none;width:100%;height:100%}
+.badge-stack{position:absolute;bottom:-12px;right:-12px;display:flex;flex-direction:column;gap:7px}
+.mini-badge{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-family:var(--fm);font-size:10px;color:var(--accent2);display:flex;align-items:center;gap:7px;white-space:nowrap;backdrop-filter:blur(10px)}
+.about-intro{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:22px}
+.about-intro strong{color:var(--text)}
+.about-intro a{color:var(--accent2);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.about-intro a:hover{border-color:var(--accent2)}
+.hl-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
+.hl-item{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:14px;display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--muted);transition:border-color .2s}
+.hl-item:hover{border-color:var(--border-hover)}
+.hl-item strong{color:var(--text);display:block;font-size:13px;line-height:1.2}
+.hl-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.edu-list{display:flex;flex-direction:column;gap:10px}
+.edu-item{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:15px 18px;display:flex;gap:14px;align-items:flex-start;transition:border-color .2s,transform .2s}
+.edu-item:hover{border-color:var(--border-hover);transform:translateX(4px)}
+.edu-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.edu-degree{font-family:var(--fd);font-weight:600;font-size:13px;color:var(--text)}
+.edu-school{font-size:12px;color:var(--accent2);margin-top:2px}
+.edu-period{font-family:var(--fm);font-size:10px;color:var(--muted);margin-top:3px}
+
+/* ── SKILLS ── */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:13px}
+.skill-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:22px;transition:border-color .25s,transform .25s,box-shadow .25s;position:relative;overflow:hidden}
+.skill-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.skill-card:hover{border-color:var(--border-hover);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.skill-card:hover::after{transform:scaleX(1)}
+.skill-icon{font-size:26px;margin-bottom:10px;display:block}
+.skill-name{font-family:var(--fd);font-weight:600;font-size:13px;color:var(--text);margin-bottom:9px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.18);color:var(--highlight);font-size:10px;font-family:var(--fm);padding:2px 7px;border-radius:4px}
+
+/* ── TIMELINE ── */
+.timeline{position:relative;padding-left:26px}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),transparent)}
+.tl-item{position:relative;padding-bottom:44px}
+.tl-item::before{content:'';position:absolute;left:-30px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(59,130,246,.15),0 0 12px rgba(59,130,246,.3)}
+.tl-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.tl-company{font-family:var(--fd);font-weight:700;font-size:16px;color:var(--text)}
+.tl-period{font-family:var(--fm);font-size:10px;color:var(--muted);background:var(--surface2);padding:3px 9px;border-radius:4px;border:1px solid var(--border)}
+.tl-role{font-size:13px;color:var(--accent2);font-family:var(--fd);font-weight:500;margin-bottom:10px}
+.tl-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.tl-list li{color:var(--muted);font-size:13px;padding-left:14px;position:relative;line-height:1.6}
+.tl-list li::before{content:'›';position:absolute;left:0;color:var(--accent);font-weight:700}
+.tl-list strong{color:var(--text);font-weight:600}
+
+/* ── PROJECTS ── */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.proj-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;transition:border-color .25s,transform .25s,box-shadow .25s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.proj-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(59,130,246,.14) 0%,transparent 55%);opacity:0;transition:opacity .3s;pointer-events:none}
+.proj-card:hover{border-color:rgba(59,130,246,.45);transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.proj-card:hover::after{opacity:1}
+.proj-num{font-family:var(--fm);font-size:10px;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:9px}
+.proj-num::after{content:'';flex:1;height:1px;background:var(--border)}
+.proj-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.proj-title{font-family:var(--fd);font-size:18px;font-weight:700;color:var(--text);margin-bottom:9px;letter-spacing:-.01em;line-height:1.25}
+.proj-desc{color:var(--muted);font-size:13px;line-height:1.65;margin-bottom:18px;flex:1}
+.proj-tech{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.tech-pill{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);color:#a78bfa;font-size:10px;font-family:var(--fm);padding:3px 8px;border-radius:100px}
+.proj-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:auto}
+.proj-link{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-family:var(--fd);font-weight:600;text-decoration:none;transition:color .2s,gap .2s;cursor:none}
+.proj-link.art{color:var(--accent)}.proj-link.art:hover{color:var(--highlight);gap:8px}
+.proj-link.gh{color:var(--muted)}.proj-link.gh:hover{color:var(--text)}
+
+/* ── ARTICLES ── */
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.art-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;text-decoration:none;transition:border-color .25s,transform .25s,box-shadow .2s;display:flex;flex-direction:column;cursor:none}
+.art-card:hover{border-color:rgba(59,130,246,.4);transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.3)}
+.art-pub{font-family:var(--fm);font-size:10px;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:9px}
+.art-title{font-family:var(--fd);font-size:14px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:7px}
+.art-sub{color:var(--muted);font-size:12px;line-height:1.6;flex:1}
+.art-arrow{margin-top:16px;color:var(--accent);font-size:16px;transition:transform .25s;display:block}
+.art-card:hover .art-arrow{transform:translateX(6px)}
+
+/* ── CERTS ── */
+.certs-grid{display:flex;gap:16px;flex-wrap:wrap}
+.cert-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:22px 26px;flex:1;min-width:190px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+.cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.cert-card:hover{border-color:var(--border-hover);transform:translateY(-2px)}
+.cert-icon{font-size:28px;margin-bottom:10px;display:block}
+.cert-name{font-family:var(--fd);font-weight:600;font-size:13px;color:var(--text);line-height:1.3}
+.cert-issuer{font-size:10px;color:var(--muted);margin-top:4px;font-family:var(--fm)}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 430px;gap:72px;align-items:start;max-width:1100px;margin:0 auto}
+.contact-tagline{color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:28px}
+.cl-list{display:flex;flex-direction:column;gap:10px}
+.cl-link{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:13px 18px;border-radius:9px;text-decoration:none;font-size:13px;font-family:var(--fd);font-weight:500;transition:border-color .25s,transform .25s,box-shadow .2s;cursor:none}
+.cl-link:hover{border-color:var(--accent);transform:translateX(5px);box-shadow:0 4px 20px rgba(59,130,246,.15)}
+.cl-link-icon{font-size:17px;flex-shrink:0}
+.cl-link-text strong{display:block;font-size:13px;color:var(--text)}
+.cl-link-text span{font-size:10px;color:var(--muted);font-family:var(--fm)}
+.contact-form{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden}
+.contact-form::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3))}
+.form-title{font-family:var(--fd);font-size:18px;font-weight:700;color:var(--text);margin-bottom:5px}
+.form-sub{font-size:12px;color:var(--muted);margin-bottom:22px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-group{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.form-group label{font-family:var(--fm);font-size:10px;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase}
+.form-group input,.form-group textarea{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:11px 14px;border-radius:8px;font-family:var(--fb);font-size:13px;outline:none;transition:border-color .2s,box-shadow .2s;resize:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(59,130,246,.1)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted)}
+.form-submit{width:100%;background:linear-gradient(135deg,var(--accent),var(--accent3));color:#fff;border:none;padding:14px;border-radius:8px;font-family:var(--fd);font-weight:700;font-size:14px;cursor:none;transition:opacity .2s,transform .2s,box-shadow .2s}
+.form-submit:hover:not(:disabled){opacity:.9;transform:translateY(-1px);box-shadow:0 8px 24px rgba(59,130,246,.35)}
+.form-submit:disabled{opacity:.6;cursor:not-allowed}
+.form-success{display:none;text-align:center;padding:16px;color:var(--accent2);font-family:var(--fm);font-size:12px;margin-top:10px;background:rgba(6,182,212,.06);border-radius:8px;border:1px solid rgba(6,182,212,.2)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:26px 56px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-copy{font-family:var(--fm);font-size:11px;color:var(--muted)}
+.footer-top{display:flex;align-items:center;gap:6px;font-family:var(--fm);font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s;cursor:none}
+.footer-top:hover{color:var(--highlight)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ── CARD COLORS ── */
+.g-blue{background:rgba(59,130,246,.08)}.g-purple{background:rgba(139,92,246,.08)}.g-teal{background:rgba(6,182,212,.08)}.g-gold{background:rgba(245,158,11,.08)}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  nav{padding:14px 20px}.nav-links{display:none}
+  .sec{padding:70px 20px}.hero{padding:100px 20px 60px}
+  .hero-inner,.about-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
+  .hero-stats,.hl-grid{grid-template-columns:1fr 1fr}
+  .about-frame{max-width:260px;aspect-ratio:1/1}
+  .projects-grid,.skills-grid,.articles-grid{grid-template-columns:1fr}
+  .certs-grid{flex-direction:column}
+  .timeline{padding-left:18px}.tl-item::before{left:-22px}
+  .form-row{grid-template-columns:1fr}
+  footer{padding:20px}
+  body{cursor:auto}#cursor,#cursor-ring{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-logo" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+    <div class="nav-avatar-wrap" id="nav-wrap" title="Upload photo">
+      <span id="nav-lbl">NK</span>
+      <img id="nav-img" src="nihar.jpeg" alt="" class="loaded" style="display:block">
+      <input type="file" accept="image/*" onchange="uploadPhoto(event)">
+    </div>
+    NK://IAM
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#articles">Articles</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge reveal"><span class="badge-dot"></span>Open to new opportunities</div>
+      <h1 class="hero-name reveal">
+        <span class="name-line-1">Nihar</span>
+        <span class="name-line-2">Kalyanam</span>
+      </h1>
+      <p class="hero-tagline reveal">
+        <span class="typed-text" id="typed"></span><span class="cursor-blink"></span>
+      </p>
+      <p class="hero-sub reveal">
+        I secure enterprise identity for the world's largest companies<br>
+        and build <strong>AI systems</strong> that make identity governance <strong>intelligent</strong>.
+      </p>
+      <div class="hero-actions reveal">
+        <a class="btn-primary" href="#projects">View My Work &rarr;</a>
+        <a class="btn-secondary" href="https://github.com/NiharKalyanam" target="_blank">GitHub &nearr;</a>
+        <a class="btn-secondary" href="https://www.linkedin.com/in/niharkalyanam/" target="_blank">LinkedIn &nearr;</a>
+      </div>
+    </div>
+    <div class="hero-stats reveal">
+      <div class="hero-stat">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Years of IAM &amp; Identity Engineering</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">8+</span>
+        <span class="stat-label">Enterprise Clients Served Across the US</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">5+</span>
+        <span class="stat-label">Custom SailPoint Plugins Built &amp; Published</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Technical Articles on AI &amp; IAM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="about-grid max-w">
+    <div class="about-photo-wrap reveal">
+      <div class="about-frame" title="Click to upload your photo">
+        <img id="about-img" src="nihar.jpeg" alt="Nihar Kalyanam" class="loaded">
+        <div class="about-placeholder" id="about-ph">
+          <span class="up-icon">&#128104;&#8205;&#128187;</span>
+          <span>Click to add<br>your photo</span>
+        </div>
+        <input type="file" accept="image/*" onchange="uploadPhoto(event)">
+      </div>
+      <div class="badge-stack">
+        <div class="mini-badge">&#127885; SailPoint Certified</div>
+        <div class="mini-badge">&#9729;&#65039; AWS Certified</div>
+      </div>
+    </div>
+    <div>
+      <p class="section-label reveal">About Me</p>
+      <h2 class="section-title reveal">IAM Engineer.<br>AI Builder.<br>Problem Solver.</h2>
+      <p class="about-intro reveal">I'm <strong>Nihar Kalyanam</strong> an Identity &amp; Access Management engineer who's spent over a decade securing enterprise environments and, more recently, teaching AI to do the heavy lifting. Based in <strong>Dallas, TX</strong>, I work at the intersection of identity governance and intelligent automation.</p>
+      <p class="about-intro reveal">I've built AI chatbots for SailPoint, connected Claude's MCP to enterprise databases for natural language querying, and engineered custom plugins used daily at Salesforce, Equifax, and Texas Instruments. I write about what I build on <a href="https://medium.com/@nihar_kalyanam" target="_blank">Medium</a> and share it on <a href="https://github.com/NiharKalyanam" target="_blank">GitHub</a>.</p>
+      <div class="hl-grid reveal">
+        <div class="hl-item"><span class="hl-icon">&#127881;</span><div><strong>MS &mdash; Information Technology Management</strong>Campbellsville University</div></div>
+        <div class="hl-item"><span class="hl-icon">&#127881;</span><div><strong>MS &mdash; Computer Science</strong>Northwestern Polytechnic University</div></div>
+        <div class="hl-item"><span class="hl-icon">&#128205;</span><div><strong>Based in</strong>Dallas, TX</div></div>
+        <div class="hl-item"><span class="hl-icon">&#9997;&#65039;</span><div><strong>Medium Writer</strong>Towards AI Publication</div></div>
+      </div>
+      <p class="section-label reveal" style="margin-bottom:14px">Education</p>
+      <div class="edu-list reveal">
+        <div class="edu-item"><div class="edu-icon">&#127891;</div><div><div class="edu-degree">MS, Information Technology Management</div><div class="edu-school">Campbellsville University</div><div class="edu-period">Jul 2017 &mdash; May 2019</div></div></div>
+        <div class="edu-item"><div class="edu-icon">&#127891;</div><div><div class="edu-degree">MS, Computer Science</div><div class="edu-school">Northwestern Polytechnic University</div><div class="edu-period">Jan 2015 &mdash; Apr 2016</div></div></div>
+        <div class="edu-item"><div class="edu-icon">&#127891;</div><div><div class="edu-degree">BTech, Information Technology</div><div class="edu-school">India</div><div class="edu-period">Graduated Apr 2014</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section class="sec alt" id="skills">
+  <div class="max-w">
+    <p class="section-label reveal">Expertise</p>
+    <h2 class="section-title reveal">Technical Stack</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal d1"><span class="skill-icon">&#128737;&#65039;</span><div class="skill-name">Identity &amp; Access Management</div><div class="skill-tags"><span class="tag">SailPoint IIQ</span><span class="tag">IdentityNow</span><span class="tag">Okta</span><span class="tag">CyberArk</span><span class="tag">PingFederate</span><span class="tag">ADFS</span></div></div>
+      <div class="skill-card reveal d2"><span class="skill-icon">&#129302;</span><div class="skill-name">AI &amp; Automation</div><div class="skill-tags"><span class="tag">LLM Chatbots</span><span class="tag">RAG</span><span class="tag">Prompt Engineering</span><span class="tag">Claude MCP</span><span class="tag">AI Workflows</span></div></div>
+      <div class="skill-card reveal d3"><span class="skill-icon">&#128274;</span><div class="skill-name">Authentication &amp; Security</div><div class="skill-tags"><span class="tag">OAuth2</span><span class="tag">OIDC</span><span class="tag">SAML</span><span class="tag">Zero Trust</span><span class="tag">RBAC</span><span class="tag">ABAC</span></div></div>
+      <div class="skill-card reveal d4"><span class="skill-icon">&#9881;&#65039;</span><div class="skill-name">Development</div><div class="skill-tags"><span class="tag">Java</span><span class="tag">BeanShell</span><span class="tag">JavaScript</span><span class="tag">ReactJS</span><span class="tag">REST APIs</span><span class="tag">SCIM</span></div></div>
+      <div class="skill-card reveal d1"><span class="skill-icon">&#9729;&#65039;</span><div class="skill-name">Cloud &amp; Infrastructure</div><div class="skill-tags"><span class="tag">AWS</span><span class="tag">Tomcat</span><span class="tag">JBoss</span><span class="tag">Linux/UNIX</span><span class="tag">GitHub</span><span class="tag">Splunk</span></div></div>
+      <div class="skill-card reveal d2"><span class="skill-icon">&#128452;&#65039;</span><div class="skill-name">Databases &amp; ITSM</div><div class="skill-tags"><span class="tag">SQL Server</span><span class="tag">MySQL</span><span class="tag">Oracle</span><span class="tag">ServiceNow</span><span class="tag">Salesforce</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section class="sec" id="experience">
+  <div class="max-w">
+    <p class="section-label reveal">Career</p>
+    <h2 class="section-title reveal">Work Experience</h2>
+    <div class="timeline">
+      <div class="tl-item reveal"><div class="tl-meta"><span class="tl-company">Salesforce</span><span class="tl-period">Mar 2021 &mdash; Present</span></div><div class="tl-role">Senior Member of Technical Staff &middot; Dallas, TX</div><ul class="tl-list"><li>Led <strong>SailPoint IIQ 8.1 &rarr; 8.4 enterprise upgrade</strong> with zero downtime and full regression validation across integrations</li><li>Designed AD Group Creation automation &mdash; reduced provisioning from days to minutes</li><li>Automated schema &amp; IT role auto-recovery, preventing recurring provisioning failures across connectors</li><li>Built AR retry automation, failed TaskResult scanning report, and certification revocation automation &mdash; reducing ops effort by <strong>60%+</strong></li><li>Evaluated IdentityNow cloud migration architecture and contributed to modernization planning</li></ul></div>
+      <div class="tl-item reveal"><div class="tl-meta"><span class="tl-company">Equifax</span><span class="tl-period">Jan 2021 &mdash; Mar 2021</span></div><div class="tl-role">SailPoint Developer &middot; Atlanta, GA</div><ul class="tl-list"><li>Implemented IIQ configurations, custom rules, plugins, and workflows for enterprise onboarding and provisioning</li><li>Aggregated data across AD, JDBC, LDAP, and file connectors; delivered rapid P1 resolution and improved audit readiness</li></ul></div>
+      <div class="tl-item reveal"><div class="tl-meta"><span class="tl-company">State Auto Insurance</span><span class="tl-period">Mar 2020 &mdash; Jan 2021</span></div><div class="tl-role">SailPoint Developer &middot; Columbus, OH</div><ul class="tl-list"><li>Onboarded Workday, LDAP, ServiceNow, SCIM 2.0, and G-Suite enhancing identity lifecycle automation</li><li>Implemented RACF mainframe integration, AWS S3 workflows, ADFS SAML SSO, and SoD policy enforcement</li></ul></div>
+      <div class="tl-item reveal"><div class="tl-meta"><span class="tl-company">Experian</span><span class="tl-period">Dec 2019 &mdash; Mar 2020</span></div><div class="tl-role">SailPoint Developer &middot; Plano, TX</div><ul class="tl-list"><li>Built Joiner&ndash;Mover&ndash;Leaver workflows, provisioning rules, and approval processes for user lifecycle automation</li><li>Developed custom JSF/xHTML forms and enhanced provisioning logic, improving data consistency</li></ul></div>
+      <div class="tl-item reveal"><div class="tl-meta"><span class="tl-company">Rockwell Automation</span><span class="tl-period">Jul 2019 &mdash; Dec 2019</span></div><div class="tl-role">SailPoint Admin/Developer &middot; Milwaukee, WI</div><ul class="tl-list"><li>Configured lifecycle events, multi-level approval workflows, and identity governance processes</li><li>Enabled SAML SSO for internal and external users; provided critical IIQ production support</li></ul></div>
+      <div class="tl-item reveal"><div class="tl-meta"><span class="tl-company">Texas Instruments</span><span class="tl-period">Jan 2018 &mdash; Jul 2019</span></div><div class="tl-role">SailPoint Developer &middot; Dallas, TX</div><ul class="tl-list"><li>Developed provisioning workflows, contractor extension processes, and custom admin interfaces (JSP, HTML, Velocity)</li><li>Managed RACF access workflows; mentored junior developers on IIQ best practices</li></ul></div>
+      <div class="tl-item reveal"><div class="tl-meta"><span class="tl-company">DExperts Inc</span><span class="tl-period">Sep 2017 &mdash; Dec 2017</span></div><div class="tl-role">SailPoint Developer &middot; Irving, TX</div><ul class="tl-list"><li>Developed BeanShell rules, birthright provisioning logic, and lifecycle events for transfers, terminations, and native change detection</li><li>Designed multi-level approval workflows with escalation to enhance access governance</li><li>Created requirement and design documentation to support ongoing enhancements</li></ul></div>
+      <div class="tl-item reveal"><div class="tl-meta"><span class="tl-company">ECOM Consulting Inc</span><span class="tl-period">May 2016 &mdash; Sep 2017</span></div><div class="tl-role">Jr. Java Developer &middot; Plano, TX</div><ul class="tl-list"><li>Developed J2EE modules using Spring, Hibernate, and JavaScript for improved system scalability</li><li>Built and deployed web applications on IBM WebSphere; optimized SQL queries for performance</li><li>Created stored procedures, triggers, and JUnit unit tests to strengthen backend reliability</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section class="sec alt" id="projects">
+  <div class="max-w">
+    <p class="section-label reveal">Built From Scratch</p>
+    <h2 class="section-title reveal">Independent Projects</h2>
+    <div class="projects-grid">
+      <div class="proj-card reveal"><div class="proj-num">01 / AI-Powered</div><div class="proj-icon g-purple">&#129302;</div><h3 class="proj-title">AI Chatbot for SailPoint IdentityIQ</h3><p class="proj-desc">LLM-powered IAM chatbot integrating with IdentityIQ APIs &mdash; enabling natural language access requests, approvals, and role management through multi-step context-aware workflows. RAG architecture for real-time identity data retrieval.</p><div class="proj-tech"><span class="tech-pill">LLM</span><span class="tech-pill">RAG</span><span class="tech-pill">SailPoint IIQ</span><span class="tech-pill">REST API</span><span class="tech-pill">Java</span></div><div class="proj-links"><a class="proj-link art" href="https://medium.com/towards-artificial-intelligence/how-i-built-an-ai-chatbot-for-sailpoint-identityiq-e5cc3c2fac4d" target="_blank">Read Article &rarr;</a><a class="proj-link art" href="https://community.sailpoint.com/t5/IdentityIQ-Forum/RE-Integrated-AI-Chatbot-with-Sailpoint-Identityiq-Slack/m-p/277659" target="_blank">Community Post &rarr;</a></div></div>
+      <div class="proj-card reveal d1"><div class="proj-num">02 / Enterprise AI</div><div class="proj-icon g-blue">&#128279;</div><h3 class="proj-title">Claude MCP &rarr; Enterprise Identity DB</h3><p class="proj-desc">Connected Claude's Model Context Protocol to an enterprise identity database &mdash; enabling natural language querying of IAM data without writing a line of SQL. No more guesswork on access data.</p><div class="proj-tech"><span class="tech-pill">Claude MCP</span><span class="tech-pill">NL Querying</span><span class="tech-pill">SQL</span><span class="tech-pill">Anthropic API</span></div><div class="proj-links"><a class="proj-link art" href="https://medium.com/towards-artificial-intelligence/how-i-connected-claude-mcp-to-an-enterprise-identity-database-for-natural-language-querying-352389433719" target="_blank">Read Article &rarr;</a><a class="proj-link art" href="https://community.sailpoint.com/t5/IdentityIQ-Forum/Connecting-MCP-with-SailPoint-IdentityIQ-Database/m-p/279948" target="_blank">Community Post &rarr;</a></div></div>
+      <div class="proj-card reveal d2"><div class="proj-num">03 / DevOps AI</div><div class="proj-icon g-teal">&#128640;</div><h3 class="proj-title">Intelligent CI/CD Platform</h3><p class="proj-desc">Automated deployment platform with AI-driven failure analysis and root cause detection. Cuts mean time to resolution for build failures through intelligent log analysis and anomaly detection.</p><div class="proj-tech"><span class="tech-pill">CI/CD</span><span class="tech-pill">AI Analysis</span><span class="tech-pill">Root Cause Detection</span><span class="tech-pill">Automation</span></div><div class="proj-links"><a class="proj-link art" href="https://medium.com/@nihar_kalyanam/intelligent-ci-cd-platform-b49eb8c71049" target="_blank">Read Article &rarr;</a><a class="proj-link art" href="https://community.sailpoint.com/t5/IdentityIQ-Forum/AI-Based-CI-CD-Failure-Analysis-for-SailPoint-using-Jenkins/m-p/279090" target="_blank">Community Post &rarr;</a></div></div>
+      <div class="proj-card reveal d3"><div class="proj-num">04 / IIQ Console</div><div class="proj-icon g-gold">&#128187;</div><h3 class="proj-title">IIQ Console Plugin</h3><p class="proj-desc">Secure web-based console embedded inside IdentityIQ to execute administrative commands &mdash; eliminating dependency on direct server access. Featured on the SailPoint Community Plugin Framework.</p><div class="proj-tech"><span class="tech-pill">SailPoint Plugin</span><span class="tech-pill">Java</span><span class="tech-pill">Security</span><span class="tech-pill">Admin Tooling</span></div><div class="proj-links"><a class="proj-link art" href="https://community.sailpoint.com/t5/Plugin-Framework/IdentityIQ-Console-Plugin/ta-p/278577" target="_blank">Community Post &rarr;</a><a class="proj-link gh" href="https://github.com/NiharKalyanam/iiq-plugins/tree/master/IIQConsole" target="_blank">GitHub &nearr;</a></div></div>
+      <div class="proj-card reveal d1"><div class="proj-num">05 / Governance</div><div class="proj-icon g-blue">&#128202;</div><h3 class="proj-title">IGA Dashboard Plugin</h3><p class="proj-desc">Real-time IGA dashboard with dynamic charts, filters, and large-scale CSV exports supporting millions of rows. Delivers actionable governance insights directly within the SailPoint interface.</p><div class="proj-tech"><span class="tech-pill">SailPoint Plugin</span><span class="tech-pill">Charts</span><span class="tech-pill">CSV Export</span><span class="tech-pill">JavaScript</span></div><div class="proj-links"><a class="proj-link art" href="https://community.sailpoint.com/t5/IdentityIQ-Forum/IGA-Dashboard-Metrix-s-implementation-using-the-Plugin/m-p/274523#M197551" target="_blank">Community Post &rarr;</a></div></div>
+      <div class="proj-card reveal d2"><div class="proj-num">06 / Data Access</div><div class="proj-icon g-purple">&#128300;</div><h3 class="proj-title">IAM Workbench &mdash; DB Access Plugin</h3><p class="proj-desc">Custom SailPoint plugin centralizing identity, access, and entitlement operations into one admin workbench. Simplifies data access in IdentityIQ and cuts manual admin effort for governance tasks.</p><div class="proj-tech"><span class="tech-pill">SailPoint Plugin</span><span class="tech-pill">Java</span><span class="tech-pill">SQL</span><span class="tech-pill">REST</span></div><div class="proj-links"><a class="proj-link art" href="https://medium.com/@nihar_kalyanam/simplifying-data-access-in-sailpoint-identityiq-with-a-db-workbench-028b3cb1fb17" target="_blank">Read Article &rarr;</a><a class="proj-link art" href="https://community.sailpoint.com/t5/IdentityIQ-Forum/IAM-DB-workbench-within-IIQ-System/m-p/277894" target="_blank">Community Post &rarr;</a></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ARTICLES -->
+<section class="sec" id="articles">
+  <div class="max-w">
+    <p class="section-label reveal">Writing</p>
+    <h2 class="section-title reveal">Published Articles</h2>
+    <div class="articles-grid">
+      <a class="art-card reveal" href="https://medium.com/towards-artificial-intelligence/how-i-connected-claude-mcp-to-an-enterprise-identity-database-for-natural-language-querying-352389433719" target="_blank"><div class="art-pub">Towards AI &middot; Medium</div><div class="art-title">Connecting Claude MCP to an Enterprise Identity Database for Natural Language Querying</div><div class="art-sub">Bridging conversational AI and enterprise IAM data access</div><span class="art-arrow">&rarr;</span></a>
+      <a class="art-card reveal d1" href="https://medium.com/@nihar_kalyanam/intelligent-ci-cd-platform-b49eb8c71049" target="_blank"><div class="art-pub">Medium &middot; May 2026</div><div class="art-title">Intelligent CI/CD Platform</div><div class="art-sub">Automated deployment, root cause detection &amp; AI-driven failure analysis</div><span class="art-arrow">&rarr;</span></a>
+      <a class="art-card reveal d2" href="https://medium.com/towards-artificial-intelligence/how-i-built-an-ai-chatbot-for-sailpoint-identityiq-e5cc3c2fac4d" target="_blank"><div class="art-pub">Towards AI &middot; Medium</div><div class="art-title">Building an AI Chatbot for SailPoint IdentityIQ</div><div class="art-sub">LLM + RAG architecture for natural language IAM interactions</div><span class="art-arrow">&rarr;</span></a>
+      <a class="art-card reveal d3" href="https://medium.com/@nihar_kalyanam/simplifying-data-access-in-sailpoint-identityiq-with-a-db-workbench-028b3cb1fb17" target="_blank"><div class="art-pub">Medium</div><div class="art-title">Simplifying Data Access in SailPoint IdentityIQ with a DB Workbench</div><div class="art-sub">Custom plugin for streamlined identity data access and admin operations</div><span class="art-arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section class="sec alt" id="certifications">
+  <div class="max-w">
+    <p class="section-label reveal">Credentials</p>
+    <h2 class="section-title reveal">Certifications</h2>
+    <div class="certs-grid">
+      <div class="cert-card reveal"><span class="cert-icon">&#127885;</span><div class="cert-name">SailPoint Certified IdentityIQ Engineer</div><div class="cert-issuer">SailPoint Technologies</div></div>
+      <div class="cert-card reveal d1"><span class="cert-icon">&#9729;&#65039;</span><div class="cert-name">AWS Certified Developer &ndash; Associate</div><div class="cert-issuer">Amazon Web Services</div></div>
+      <div class="cert-card reveal d2"><span class="cert-icon">&#9749;</span><div class="cert-name">Java SE 8 Oracle Certified Associate</div><div class="cert-issuer">Oracle Corporation</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="contact-grid">
+    <div>
+      <p class="section-label reveal">Get In Touch</p>
+      <h2 class="section-title reveal">Ready to build<br>something great<br>together?</h2>
+      <p class="contact-tagline reveal">Whether you need a <strong style="color:var(--text)">senior IAM architect</strong>, an <strong style="color:var(--text)">AI automation engineer</strong>, or a trusted technical partner &mdash; I bring a decade of enterprise identity experience and a builder's mindset to every engagement. Let's talk.</p>
+      <div class="cl-list reveal">
+        <a class="cl-link" href="https://www.linkedin.com/in/niharkalyanam/" target="_blank"><span class="cl-link-icon">&#128188;</span><div class="cl-link-text"><strong>LinkedIn</strong><span>linkedin.com/in/niharkalyanam</span></div></a>
+        <a class="cl-link" href="https://github.com/NiharKalyanam/iiq-plugins" target="_blank"><span class="cl-link-icon">&#128025;</span><div class="cl-link-text"><strong>GitHub &mdash; IIQ Plugins</strong><span>NiharKalyanam/iiq-plugins</span></div></a>
+        <a class="cl-link" href="https://github.com/NiharKalyanam/ai" target="_blank"><span class="cl-link-icon">&#129302;</span><div class="cl-link-text"><strong>GitHub &mdash; AI Projects</strong><span>NiharKalyanam/ai</span></div></a>
+        <a class="cl-link" href="https://medium.com/@nihar_kalyanam" target="_blank"><span class="cl-link-icon">&#9997;&#65039;</span><div class="cl-link-text"><strong>Medium Articles</strong><span>@nihar_kalyanam</span></div></a>
+        <a class="cl-link" href="https://community.sailpoint.com/t5/user/viewprofilepage/user-id/24233" target="_blank"><span class="cl-link-icon">&#9973;&#65039;</span><div class="cl-link-text"><strong>SailPoint Community</strong><span>Verified Contributor</span></div></a>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="contact-form">
+        <div class="form-title">Send me a message</div>
+        <div class="form-sub">All fields marked * are required.</div>
+        <div class="form-row">
+          <div class="form-group"><label>First Name *</label><input id="ff" type="text" placeholder="Nihar"></div>
+          <div class="form-group"><label>Last Name *</label><input id="fl" type="text" placeholder="Kalyanam"></div>
+        </div>
+        <div class="form-group"><label>Email *</label><input id="fe" type="email" placeholder="nihar@company.com"></div>
+        <div class="form-group"><label>Company / Role</label><input id="fc" type="text" placeholder="e.g. Google, Recruiter at Acme"></div>
+        <div class="form-group"><label>Message *</label><textarea id="fm" rows="5" placeholder="Tell me about the role or project..."></textarea></div>
+        <button class="form-submit" onclick="sendMsg()">Send Message &rarr;</button>
+        <div class="form-success" id="fs">&#10003; Message sent! I'll be in touch soon.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">&copy; 2026 Nihar Kalyanam &middot; IAM &amp; AI Engineer &middot; Dallas, TX</span>
+  <a class="footer-top" href="#">&#8593; Back to top</a>
+</footer>
+
+<script>
+/* ── CUSTOM CURSOR ── */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+function animateRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing)}
+animateRing();
+document.querySelectorAll('a,button,.proj-card,.skill-card,.art-card,.hero-stat,.cert-card,.cl-link,.nav-avatar-wrap,.about-frame').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+});
+
+/* ── NAV SCROLL EFFECT ── */
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>40);
+},{ passive:true });
+
+/* ── ACTIVE NAV LINKS ── */
+const sections = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navAs.forEach(a=>a.classList.remove('active'));
+      const active = document.querySelector('.nav-links a[href="#'+e.target.id+'"]');
+      if(active) active.classList.add('active');
+    }
+  });
+},{threshold:.35});
+sections.forEach(s=>io.observe(s));
+
+/* ── SCROLL REVEAL ── */
+const revObs = new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target)}});
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+/* ── MOUSE GLOW ON PROJECT CARDS ── */
+document.querySelectorAll('.proj-card').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect();
+    c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+    c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
+
+/* ── TYPEWRITER ── */
+const phrases = [
+  'IAM Engineer. AI Builder.',
+  'I secure enterprise identity.',
+  'I build AI for SailPoint.',
+  'I turn access data into insight.',
+  'SailPoint Expert. Cloud Architect.',
+];
+let pi=0,ci=0,deleting=false,pause=0;
+const typed = document.getElementById('typed');
+function typeLoop(){
+  if(pause>0){pause--;setTimeout(typeLoop,50);return;}
+  const phrase=phrases[pi];
+  if(!deleting){
+    typed.textContent=phrase.slice(0,++ci);
+    if(ci===phrase.length){deleting=true;pause=40;}
+    setTimeout(typeLoop,deleting?30:60);
+  } else {
+    typed.textContent=phrase.slice(0,--ci);
+    if(ci===0){deleting=false;pi=(pi+1)%phrases.length;pause=8;}
+    setTimeout(typeLoop,30);
+  }
+}
+typeLoop();
+
+/* ── PHOTO UPLOAD ── */
+function applyPhoto(src){
+  const aImg=document.getElementById('about-img'); aImg.src=src; aImg.classList.add('loaded');
+  document.getElementById('about-ph').style.display='none';
+  const nImg=document.getElementById('nav-img'); nImg.src=src; nImg.style.display='block';
+  document.getElementById('nav-lbl').style.display='none';
+}
+function uploadPhoto(ev){
+  const file=ev.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{localStorage.setItem('nk_photo',e.target.result);}catch(err){}
+    applyPhoto(e.target.result);
+  };
+  reader.readAsDataURL(file);
+}
+(function(){try{const s=localStorage.getItem('nk_photo');if(s)applyPhoto(s);}catch(err){}})();
+
+/* ── CONTACT FORM (Formspree) ── */
+async function sendMsg(){
+  const f=document.getElementById('ff').value.trim(),
+        l=document.getElementById('fl').value.trim(),
+        e=document.getElementById('fe').value.trim(),
+        m=document.getElementById('fm').value.trim();
+  if(!f||!l||!e||!m){alert('Please fill in all required fields (First Name, Last Name, Email, Message).');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){alert('Please enter a valid email address.');return;}
+  const btn=document.querySelector('.form-submit');
+  btn.disabled=true; btn.textContent='Sending...';
+  try{
+    const res=await fetch('https://formspree.io/f/xpqgrpyo',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({firstName:f,lastName:l,email:e,company:document.getElementById('fc').value,message:m})
+    });
+    if(res.ok){
+      document.getElementById('fs').style.display='block';
+      ['ff','fl','fe','fc','fm'].forEach(id=>document.getElementById(id).value='');
+      btn.textContent='Sent \u2713';
+    } else {
+      alert('Something went wrong. Please email niharkalyanam@gmail.com directly.');
+      btn.disabled=false; btn.textContent='Send Message \u2192';
+    }
+  } catch(err){
+    alert('Network error. Please email niharkalyanam@gmail.com directly.');
+    btn.disabled=false; btn.textContent='Send Message \u2192';
+  }
+}
+</script>
+</body>
+</html>
